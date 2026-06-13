@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Internship Assistant | Hari Harivarshan</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar" id="sidebar">
+      <div class="brand">
+        <div class="brand-icon">IA</div>
+        <div>
+          <h1>Internship Assistant</h1>
+          <p>Hari Harivarshan</p>
+        </div>
+      </div>
+      <nav class="nav">
+        <button class="nav-btn active" data-section="dashboard">🏠 Dashboard</button>
+        <button class="nav-btn" data-section="meeting">⚡ Live Meeting</button>
+        <button class="nav-btn" data-section="translate">🔄 Translate</button>
+        <button class="nav-btn" data-section="email">✉️ Email Writer</button>
+        <button class="nav-btn" data-section="glossary">📚 Marketing Terms</button>
+        <button class="nav-btn" data-section="correct">✅ English Fix</button>
+        <button class="nav-btn" data-section="notes">📝 Meeting Notes</button>
+        <button class="nav-btn" data-section="phrases">💬 Quick Phrases</button>
+        <a class="nav-btn nav-link" href="live.html">🎙️ Live Listen</a>
+      </nav>
+      <div class="sidebar-footer">
+        <p>Digital Marketing Intern</p>
+      </div>
+    </aside>
+
+    <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">☰</button>
+
+    <main class="main">
+      <!-- Dashboard -->
+      <section class="section active" id="dashboard">
+        <header class="page-header">
+          <h2>Welcome, Hari! 👋</h2>
+          <p>Your personal internship helper — English communication made easy.</p>
+        </header>
+        <div class="cards-grid">
+          <div class="card quick-card" data-go="meeting">
+            <span class="card-icon">⚡</span>
+            <h3>Live Meeting</h3>
+            <p>Quick English answers during meetings</p>
+          </div>
+          <div class="card quick-card" data-go="translate">
+            <span class="card-icon">🔄</span>
+            <h3>Translate</h3>
+            <p>English → Simple Tamil explanation</p>
+          </div>
+          <div class="card quick-card" data-go="email">
+            <span class="card-icon">✉️</span>
+            <h3>Email Writer</h3>
+            <p>Professional emails & messages</p>
+          </div>
+          <div class="card quick-card" data-go="glossary">
+            <span class="card-icon">📚</span>
+            <h3>Marketing Terms</h3>
+            <p>Digital marketing glossary in Tamil</p>
+          </div>
+          <div class="card quick-card" data-go="correct">
+            <span class="card-icon">✅</span>
+            <h3>English Fix</h3>
+            <p>Correct your English politely</p>
+          </div>
+          <div class="card quick-card" data-go="notes">
+            <span class="card-icon">📝</span>
+            <h3>Meeting Notes</h3>
+            <p>Summarize important points</p>
+          </div>
+          <a class="card quick-card live-card" href="live.html">
+            <span class="card-icon">🎙️</span>
+            <h3>Live Listen</h3>
+            <p>Zoom/YouTube audio → live text overlay</p>
+          </a>
+        </div>
+        <div class="tip-box">
+          <strong>💡 Tip:</strong> Live meeting-ல் இருக்கும்போது <strong>Live Meeting</strong> tab use பண்ணுங்கள் — short answers கிடைக்கும்!
+        </div>
+      </section>
+
+      <!-- Live Meeting -->
+      <section class="section" id="meeting">
+        <header class="page-header">
+          <h2>⚡ Live Meeting Helper</h2>
+          <p>Question type select பண்ணுங்கள் — professional English answer கிடைக்கும்</p>
+        </header>
+        <div class="tool-panel">
+          <label>What did they ask?</label>
+          <select id="meetingQuestion">
+            <option value="">-- Select question type --</option>
+            <option value="introduce">Introduce yourself</option>
+            <option value="yesterday">What did you do yesterday?</option>
+            <option value="understand">Do you understand?</option>
+            <option value="deadline">Can you finish by deadline?</option>
+            <option value="help">Do you need help?</option>
+            <option value="opinion">What do you think?</option>
+            <option value="repeat">Can you repeat that?</option>
+            <option value="clarify">I didn't understand</option>
+            <option value="update">Give a status update</option>
+            <option value="learned">What did you learn?</option>
+            <option value="custom">Custom question...</option>
+          </select>
+
+          <div id="customQuestionBox" class="hidden">
+            <label>Type the question they asked:</label>
+            <input type="text" id="customQuestion" placeholder="e.g., Can you handle social media posts?">
+          </div>
+
+          <label>Your context (optional):</label>
+          <input type="text" id="meetingContext" placeholder="e.g., I worked on Canva designs">
+
+          <button class="btn primary" id="getMeetingAnswer">Get Answer</button>
+
+          <div class="result-box" id="meetingResult">
+            <div class="result-header">
+              <span>English Answer (copy & speak)</span>
+              <button class="btn-copy" data-target="meetingAnswer">Copy</button>
+            </div>
+            <p class="english-answer" id="meetingAnswer"></p>
+            <div class="tamil-explain" id="meetingTamil"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Translate -->
+      <section class="section" id="translate">
+        <header class="page-header">
+          <h2>🔄 English → Tamil</h2>
+          <p>English text paste பண்ணுங்கள் — simple Tamil explanation கிடைக்கும்</p>
+        </header>
+        <div class="tool-panel">
+          <label>Paste English text:</label>
+          <textarea id="translateInput" rows="5" placeholder="Paste English sentence or paragraph here..."></textarea>
+          <button class="btn primary" id="translateBtn">Explain in Tamil</button>
+          <div class="result-box" id="translateResult">
+            <div class="result-header">
+              <span>Tamil Explanation</span>
+              <button class="btn-copy" data-target="translateOutput">Copy</button>
+            </div>
+            <p id="translateOutput"></p>
+          </div>
+          <div class="info-box">
+            <strong>Note:</strong> Common words & phrases-க்கு instant Tamil explanation கிடைக்கும். Long/complex text-க்கு word-by-word help கிடைக்கும்.
+          </div>
+        </div>
+      </section>
+
+      <!-- Email Writer -->
+      <section class="section" id="email">
+        <header class="page-header">
+          <h2>✉️ Email & Message Writer</h2>
+          <p>Template select பண்ணி, details fill பண்ணுங்கள்</p>
+        </header>
+        <div class="tool-panel">
+          <label>Email type:</label>
+          <select id="emailType">
+            <option value="leave">Leave Request</option>
+            <option value="thank">Thank You</option>
+            <option value="update">Work Update</option>
+            <option value="doubt">Ask a Doubt</option>
+            <option value="late">Running Late</option>
+            <option value="complete">Task Completed</option>
+            <option value="intro">Introduction Email</option>
+          </select>
+
+          <div class="form-grid">
+            <div>
+              <label>Manager/Recipient name:</label>
+              <input type="text" id="emailTo" placeholder="e.g., Mr. Kumar">
+            </div>
+            <div>
+              <label>Your detail:</label>
+              <input type="text" id="emailDetail" placeholder="e.g., tomorrow, Canva post">
+            </div>
+          </div>
+
+          <button class="btn primary" id="generateEmail">Generate Email</button>
+
+          <div class="result-box" id="emailResult">
+            <div class="result-header">
+              <span>Professional Email</span>
+              <button class="btn-copy" data-target="emailOutput">Copy</button>
+            </div>
+            <pre id="emailOutput"></pre>
+          </div>
+        </div>
+      </section>
+
+      <!-- Glossary -->
+      <section class="section" id="glossary">
+        <header class="page-header">
+          <h2>📚 Digital Marketing Terms</h2>
+          <p>Technical terms — simple Tamil explanation with examples</p>
+        </header>
+        <div class="search-box">
+          <input type="text" id="glossarySearch" placeholder="Search term... e.g., CTR, ROI, Meta Ads">
+        </div>
+        <div class="glossary-list" id="glossaryList"></div>
+      </section>
+
+      <!-- English Fix -->
+      <section class="section" id="correct">
+        <header class="page-header">
+          <h2>✅ English Correction</h2>
+          <p>உங்கள் English sentence paste பண்ணுங்கள் — better version கிடைக்கும்</p>
+        </header>
+        <div class="tool-panel">
+          <label>Your English sentence:</label>
+          <textarea id="correctInput" rows="3" placeholder="e.g., I done the work yesterday"></textarea>
+          <button class="btn primary" id="correctBtn">Fix My English</button>
+          <div class="result-box" id="correctResult">
+            <div class="result-header">
+              <span>Better Version</span>
+              <button class="btn-copy" data-target="correctOutput">Copy</button>
+            </div>
+            <p class="english-answer" id="correctOutput"></p>
+            <div class="tamil-explain" id="correctTamil"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Meeting Notes -->
+      <section class="section" id="notes">
+        <header class="page-header">
+          <h2>📝 Meeting Notes Summary</h2>
+          <p>Meeting notes paste பண்ணுங்கள் — important points extract ஆகும்</p>
+        </header>
+        <div class="tool-panel">
+          <label>Paste your meeting notes:</label>
+          <textarea id="notesInput" rows="8" placeholder="Paste raw meeting notes here..."></textarea>
+          <div class="btn-row">
+            <button class="btn primary" id="summarizeBtn">Summarize</button>
+            <button class="btn secondary" id="saveNotesBtn">Save Notes</button>
+            <button class="btn secondary" id="loadNotesBtn">Load Saved</button>
+          </div>
+          <div class="result-box" id="notesResult">
+            <div class="result-header">
+              <span>Summary</span>
+              <button class="btn-copy" data-target="notesOutput">Copy</button>
+            </div>
+            <div id="notesOutput"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Quick Phrases -->
+      <section class="section" id="phrases">
+        <header class="page-header">
+          <h2>💬 Quick English Phrases</h2>
+          <p>Internship-ல் daily use பண்ண useful phrases</p>
+        </header>
+        <div class="phrases-list" id="phrasesList"></div>
+      </section>
+    </main>
+  </div>
+
+  <div class="toast" id="toast">Copied!</div>
+  <script src="profile.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

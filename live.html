@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Live Listen | Internship Assistant</title>
+  <link rel="stylesheet" href="live.css">
+</head>
+<body class="live-body">
+
+  <div class="setup-panel" id="setupPanel">
+    <div class="setup-card">
+      <h1>🎙️ Live Listen</h1>
+      <p class="subtitle">Zoom / YouTube audio-ஐ கேட்டு live text-ஆ காட்டும்</p>
+
+      <div class="mode-select">
+        <label class="mode-option">
+          <input type="radio" name="mode" value="tab" checked>
+          <span>
+            <strong>Tab Audio</strong> (Recommended)
+            <small>YouTube / Zoom tab select பண்ணுங்கள் — audio capture ஆகும்</small>
+          </span>
+        </label>
+        <label class="mode-option">
+          <input type="radio" name="mode" value="mic">
+          <span>
+            <strong>Microphone</strong>
+            <small>Speaker-ல் sound வருதுனா mic pick பண்ணும்</small>
+          </span>
+        </label>
+      </div>
+
+      <div class="api-section">
+        <label>API Key <span class="optional">(Tab audio + Tamil-க்கு)</span></label>
+        <input type="password" id="apiKey" placeholder="எந்த API key-உம் paste பண்ணுங்கள் — auto detect ஆகும்">
+        <div class="provider-row">
+          <select id="apiProvider">
+            <option value="auto">🔍 Auto Detect</option>
+            <option value="gemini">Google Gemini (AIza...)</option>
+            <option value="openai">OpenAI (sk-...)</option>
+            <option value="groq">Groq (gsk_...)</option>
+          </select>
+          <button class="btn test" id="testKeyBtn" type="button">Test Key</button>
+        </div>
+        <p class="key-status" id="keyStatus"></p>
+        <details class="key-help">
+          <summary>Free API key எங்கே எடுப்பது?</summary>
+          <ul>
+            <li><a href="https://aistudio.google.com/apikey" target="_blank">Gemini</a> — AIza... (recommended, free)</li>
+            <li><a href="https://platform.openai.com/api-keys" target="_blank">OpenAI</a> — sk-...</li>
+            <li><a href="https://console.groq.com/keys" target="_blank">Groq</a> — gsk_... (free)</li>
+          </ul>
+        </details>
+      </div>
+
+      <div class="lang-select">
+        <label>
+          <input type="checkbox" id="showTamil" checked>
+          Tamil explanation-உம் காட்டு
+        </label>
+        <label>
+          <input type="checkbox" id="showReply" checked>
+          💬 <strong>நீங்கள் என்ன பதில் சொல்லணும்</strong> + அடுத்து என்ன பண்ணணும்
+        </label>
+      </div>
+
+      <div class="btn-row">
+        <button class="btn start" id="startBtn">▶ Start Listening</button>
+        <button class="btn popup" id="popupBtn">⧉ Open Overlay Window</button>
+      </div>
+
+      <div class="steps">
+        <h3>YouTube Test — எப்படி check பண்ணுவது?</h3>
+        <ol>
+          <li>API key paste → <strong>Test Key</strong> click (✅ வந்தா OK)</li>
+          <li>YouTube-ல் English video open பண்ணுங்கள் (வேற tab)</li>
+          <li><strong>Start Listening</strong> → YouTube tab select</li>
+          <li>✅ <strong>"Share tab audio"</strong> tick பண்ணுங்கள்</li>
+          <li>Right side overlay-ல் text + <strong>நீங்கள் என்ன பதில் சொல்லணும்</strong> வரும்!</li>
+        </ol>
+      </div>
+
+      <a href="index.html" class="back-link">← Back to Main App</a>
+    </div>
+  </div>
+
+  <div class="overlay-panel" id="overlayPanel">
+    <div class="overlay-header">
+      <span class="status-dot" id="statusDot"></span>
+      <span id="statusText">Ready</span>
+      <span class="provider-badge" id="providerBadge"></span>
+      <div class="overlay-controls">
+        <button id="pauseBtn" title="Pause">⏸</button>
+        <button id="clearBtn" title="Clear">🗑</button>
+        <button id="minimizeBtn" title="Minimize">—</button>
+      </div>
+    </div>
+    <div class="overlay-body" id="transcriptBox">
+      <p class="placeholder">Text இங்கே live-ஆ வரும்...</p>
+    </div>
+    <div class="overlay-footer">
+      <span id="lineCount">0 lines</span>
+      <button id="copyAllBtn">Copy All</button>
+    </div>
+  </div>
+
+  <script src="profile.js"></script>
+  <script src="responses.js"></script>
+  <script src="live.js"></script>
+</body>
+</html>
